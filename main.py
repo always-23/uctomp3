@@ -63,7 +63,7 @@ def verify_file_size(_file_path):   # 校验文件大小
     return _dict['size'] == current_file_size
 
 
-def get_file_suffix(_file_path):    # 获取文件后缀
+def get_file_suffix(_file_path):    # 获取info文件描述中的后缀名
     _dict = data_dumps(replace_suffix(_file_path, '.info'))
     if not _dict:
         return 'mp3'
@@ -72,7 +72,7 @@ def get_file_suffix(_file_path):    # 获取文件后缀
 
 def form_path(_file_path):      # 解析文件路径
     _path, _full_file_name = os.path.split(_file_path)
-    _file_name, _suffix = _full_file_name.split('.')
+    _file_name, _, _suffix = _full_file_name.rpartition('.')
     return _path, _file_name, _suffix
 
 
